@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Betty Car</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo"></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="rental.html">Rental</a></li>
+      <li><a href="signin.html">Sign In</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <main class="signin-main">
+    <div style="max-width:370px; margin:2.5rem auto 0 auto; background:#f1f1f1; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:2.5rem 2rem; text-align:center;">
+      <div style="margin-bottom:1.2rem;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Icon" style="width:60px; border-radius:50%; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+      </div>
+      <h1 style="font-size:2rem; margin-bottom:0.5rem;">Welcome Back!</h1>
+      <p style="color:#636e72; margin-bottom:1.5rem;">Sign in to your Betty Car account to manage your bookings and profile.</p>
+      <form class="signin-form" style="margin-bottom:1.2rem;">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <div style="position:relative;">
+          <input type="password" id="password" name="password" required style="padding-right:2.5rem;">
+          <span id="toggle-password" style="position:absolute; right:0.7rem; top:50%; transform:translateY(-50%); cursor:pointer; color:#6c63ff; font-size:1.2rem;">
+            <i class="fa fa-eye"></i>
+          </span>
+        </div>
+        <a href="#" style="display:block; text-align:right; font-size:0.98rem; color:#4a90e2; margin:0.5rem 0 1rem 0; text-decoration:none;">Forgot password?</a>
+        <button type="submit" class="cta-btn" style="width:100%;">Sign In</button>
+      </form>
+      <div style="margin:1.2rem 0 0.5rem 0;">
+        <button id="google-signin" style="background:#fff; color:#222; border:1px solid #ccc; border-radius:25px; padding:0.7rem 1.5rem; font-size:1rem; display:flex; align-items:center; gap:0.7rem; margin:0 auto; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" alt="Google" style="width:22px; height:22px;"> Sign in with Google
+        </button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Betty Car | Bishoftu, Ethiopia | Email: bettycargmail.com</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html> 
