@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Cars - Betty Car Rental</title>
+  <meta name="description" content="Search and filter our full fleet of rental cars. Compare prices, features, and availability. Book your perfect car in Bishoftu, Ethiopia.">
+  <meta name="keywords" content="rent a car, car search, SUV rental, sedan rental, Bishoftu">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Find Your Perfect Ride</h1>
+      <p>Search, filter, and compare from our full fleet of premium rental vehicles.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="rental-layout">
+        <aside class="filters-panel">
+          <h3>Filters</h3>
+          <form id="filter-form">
+            <div class="filter-group">
+              <input type="text" id="search-input" class="form-control" placeholder="Search cars...">
+            </div>
+            <div class="filter-group">
+              <strong style="display:block;margin-bottom:0.5rem;font-size:0.875rem">Car Type</strong>
+              <label><input type="checkbox" name="type" value="Sedan"> Sedan</label>
+              <label><input type="checkbox" name="type" value="SUV"> SUV</label>
+              <label><input type="checkbox" name="type" value="Luxury"> Luxury</label>
+              <label><input type="checkbox" name="type" value="Van"> Van</label>
+              <label><input type="checkbox" name="type" value="Pickup"> Pickup</label>
+              <label><input type="checkbox" name="type" value="Minivan"> Minivan</label>
+              <label><input type="checkbox" name="type" value="Convertible"> Convertible</label>
+              <label><input type="checkbox" name="type" value="Truck"> Truck</label>
+              <label><input type="checkbox" name="type" value="Electric"> Electric</label>
+              <label><input type="checkbox" name="type" value="Compact"> Compact</label>
+            </div>
+            <div class="filter-group">
+              <strong style="display:block;margin-bottom:0.5rem;font-size:0.875rem">Price Range (ETB/day)</strong>
+              <div class="price-range">
+                <input type="number" id="min-price" class="form-control" placeholder="Min" min="0">
+                <span>-</span>
+                <input type="number" id="max-price" class="form-control" placeholder="Max" min="0">
+              </div>
+            </div>
+            <div class="filter-group">
+              <label for="transmission-filter">Transmission</label>
+              <select id="transmission-filter" class="form-control">
+                <option value="">Any</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="fuel-filter">Fuel Type</label>
+              <select id="fuel-filter" class="form-control">
+                <option value="">Any</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electric">Electric</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label><input type="checkbox" id="available-only"> Available only</label>
+            </div>
+            <button type="button" id="clear-filters" class="btn btn-outline btn-block" style="color:var(--primary);border-color:var(--border)">Clear Filters</button>
+          </form>
+        </aside>
+
+        <div>
+          <div class="rental-toolbar">
+            <span id="results-count" class="results-count">Loading...</span>
+            <select id="sort-select" class="form-control" style="width:auto">
+              <option value="">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+          <div class="car-grid" id="cars-grid"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/home.js"></script>
+  <script src="/js/rental.js"></script>
+</body>
+</html>

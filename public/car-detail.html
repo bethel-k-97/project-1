@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details - Betty Car Rental</title>
+  <meta name="description" content="View car details, features, reviews, and book your rental online with Betty Car in Bishoftu, Ethiopia.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Car Details</h1>
+      <p>View specifications, features, reviews, and book your rental.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <a href="/rental.html" class="text-muted" style="display:inline-block;margin-bottom:1.5rem">&larr; Back to all cars</a>
+      <div id="car-detail-content"></div>
+
+      <div class="reviews-section">
+        <h2 style="font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:1rem">Customer Reviews</h2>
+        <div id="reviews-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/home.js"></script>
+  <script src="/js/car-detail.js"></script>
+</body>
+</html>

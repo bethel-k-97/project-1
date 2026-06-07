@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Betty Car</title>
+  <meta name="description" content="Contact Betty Car in Bishoftu, Ethiopia. Questions, feedback, or booking help — we're here for you.">
+  <meta name="keywords" content="contact Betty Car, car rental support, Bishoftu">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Reach out with questions, feedback, or to book your next ride.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="content-card">
+          <h2>Send a Message</h2>
+          <form id="contact-form">
+            <div class="form-group mb-2">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group mb-2">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group mb-2">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+
+        <div class="content-card">
+          <h2>Get in Touch</h2>
+          <div class="contact-info-item">
+            <div class="icon">✉</div>
+            <div><strong>Email</strong><br><a href="mailto:info@bettycar.com">info@bettycar.com</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon">📞</div>
+            <div><strong>Phone</strong><br><a href="tel:+251966112184">+251 966112184</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon">📍</div>
+            <div><strong>Location</strong><br>Bishoftu, Ethiopia</div>
+          </div>
+          <div class="map-embed mt-2">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=39.759%2C8.725%2C39.785%2C8.755&amp;layer=mapnik" title="Betty Car location map"></iframe>
+          </div>
+          <p class="text-muted mt-2" style="font-size:0.9375rem">Business Hours: Mon–Sat, 8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/contact.js"></script>
+</body>
+</html>
