@@ -19,6 +19,19 @@ class ApiClient {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
+      // Handle 403 Forbidden - admin access denied
+      if (response.status === 403) {
+        UI.toast('Admin access required', 'error');
+        window.location.href = '/dashboard.html';
+        throw new Error('Admin access required');
+      }
+      // Handle 401 Unauthorized - token expired or invalid
+      if (response.status === 401) {
+        localStorage.removeItem('bettycar_token');
+        localStorage.removeItem('bettycar_user');
+        window.location.href = '/login.html';
+        throw new Error('Session expired. Please log in again.');
+      }
       throw new Error(data.message || 'Something went wrong');
     }
 

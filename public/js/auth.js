@@ -42,12 +42,8 @@ const Auth = {
   },
 
   requireAdmin() {
+    // Only check if logged in - backend handles actual authorization
     if (!this.requireAuth()) return false;
-    if (!this.isAdmin()) {
-      UI.toast('Admin access required', 'error');
-      window.location.href = '/dashboard.html';
-      return false;
-    }
     return true;
   },
 
