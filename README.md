@@ -1,347 +1,180 @@
 # Betty Car Rental Management System
 
-A production-ready full-stack car rental platform for Betty Car, Bishoftu, Ethiopia. Built with Node.js, Express, MongoDB, and modern frontend technologies.
+## About the Project
+
+Betty Car Rental Management System is a full-stack web application developed to simplify the process of renting cars. The system allows customers to browse available vehicles, create rental bookings, and manage their accounts. It also provides an admin dashboard where the administrator can manage cars and customer bookings.
+
+This project was developed using Node.js, Express.js, MongoDB Atlas, HTML, CSS, and JavaScript as part of my software engineering learning and portfolio.
+
+---
 
 ## Features
 
-### For Customers
-- Browse and search rental cars with advanced filters
-- View detailed car information and specifications
-- Book cars online with date selection
-- User authentication (registration/login)
-- Save favorite cars
-- View booking history and status
-- Contact form for inquiries
+### Customer
 
-### For Administrators
-- Admin dashboard with statistics
-- Add, edit, and delete cars
-- View and manage all bookings
-- Update booking status
-- View customer reviews
-- View contact messages
+* Register and log in
+* Browse available cars
+* View car details
+* Search and filter cars
+* Book a car
+* View booking history
+* Manage personal profile
 
-## Tech Stack
+### Administrator
+
+* Secure admin login
+* View dashboard statistics
+* Add new cars
+* Edit car information
+* Delete cars
+* View all bookings
+* Update booking status
+
+---
+
+## Technologies Used
 
 ### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB Atlas** - Cloud database
-- **Mongoose** - ODM for MongoDB
-- **JWT** - Authentication tokens
-- **bcryptjs** - Password hashing
-- **express-validator** - Input validation
+
+* Node.js
+* Express.js
+* MongoDB Atlas
+* Mongoose
+* JSON Web Token (JWT)
+* bcryptjs
 
 ### Frontend
-- **HTML5** - Markup
-- **CSS3** - Styling with modern design
-- **Vanilla JavaScript** - Client-side logic
-- **Fetch API** - HTTP requests
+
+* HTML5
+* CSS3
+* JavaScript (Vanilla)
+
+---
 
 ## Project Structure
 
-```
+text
 betty-car-rental/
-├── public/                 # Frontend static files
+│
+├── public/
 │   ├── css/
-│   │   └── styles.css     # Main stylesheet
 │   ├── js/
-│   │   ├── api.js         # API client
-│   │   ├── auth.js        # Authentication logic
-│   │   ├── navbar.js      # Navigation
-│   │   ├── ui.js          # UI utilities
-│   │   ├── home.js        # Home page logic
-│   │   ├── rental.js      # Rental page logic
-│   │   ├── car-detail.js  # Car detail page logic
-│   │   ├── dashboard.js   # User dashboard logic
-│   │   ├── admin.js       # Admin dashboard logic
-│   │   └── ...
-│   ├── index.html        # Home page
-│   ├── rental.html       # Car listing page
-│   ├── car-detail.html   # Car details page
-│   ├── about.html        # About page
-│   ├── contact.html      # Contact page
-│   ├── login.html        # Login page
-│   ├── register.html     # Registration page
-│   ├── dashboard.html    # User dashboard
-│   ├── admin.html       # Admin dashboard
-│   └── terms.html       # Terms and conditions
+│   ├── images/
+│   └── *.html
+│
 ├── src/
 │   ├── config/
-│   │   └── db.js         # MongoDB connection
 │   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── carController.js
-│   │   ├── bookingController.js
-│   │   ├── reviewController.js
-│   │   ├── favoriteController.js
-│   │   ├── contactController.js
-│   │   └── adminController.js
 │   ├── middleware/
-│   │   ├── auth.js       # JWT authentication
-│   │   ├── admin.js      # Admin role check
-│   │   └── errorHandler.js
 │   ├── models/
-│   │   ├── User.js
-│   │   ├── Car.js
-│   │   ├── Booking.js
-│   │   ├── Review.js
-│   │   ├── Favorite.js
-│   │   └── Contact.js
 │   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── carRoutes.js
-│   │   ├── bookingRoutes.js
-│   │   ├── reviewRoutes.js
-│   │   ├── favoriteRoutes.js
-│   │   ├── contactRoutes.js
-│   │   └── adminRoutes.js
-│   ├── utils/
-│   │   └── seedCars.js   # Database seeding script
-│   └── app.js            # Express app configuration
-├── .env.example          # Environment variables template
-├── .gitignore
+│   └── utils/
+│
 ├── package.json
-├── server.js             # Server entry point
+├── server.js
 └── README.md
-```
+
+---
 
 ## Installation
 
-### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB Atlas account
-- Git
+Clone the repository
 
-### Setup Steps
+ bash
+git clone https://github.com/bethel-k-97/car-rental
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd betty-car-rental
-   ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+Move into the project folder
 
-3. **Set up MongoDB Atlas**
-   - Create a free MongoDB Atlas account
-   - Create a new cluster
-   - Create a database user with read/write permissions
-   - Get your connection string (MongoDB URI)
-   - Whitelist your IP address (use 0.0.0.0/0 for development)
+bash
+cd car-rental
 
-4. **Configure environment variables**
-   - Copy `.env.example` to `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - Edit `.env` and fill in your values:
-     ```env
-     PORT=5000
-     NODE_ENV=development
-     MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/bettycar?retryWrites=true&w=majority
-     JWT_SECRET=your_super_secret_jwt_key_change_in_production
-     JWT_EXPIRES_IN=7d
-     ADMIN_EMAIL=admin@bettycar.com
-     ADMIN_PASSWORD=Admin@123456
-     ```
-   - Replace `<username>`, `<password>`, and `<cluster>` with your MongoDB credentials
-   - Change `JWT_SECRET` to a secure random string
-   - Update `ADMIN_EMAIL` and `ADMIN_PASSWORD` as desired
 
-5. **Seed the database**
-   ```bash
-   npm run seed
-   ```
-   This will:
-   - Clear existing cars
-   - Insert 10 sample cars
-   - Create an admin user with credentials from `.env`
+Install dependencies
 
-6. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-   Or for production:
-   ```bash
-   npm start
-   ```
+bash
+npm install
 
-7. **Access the application**
-   - Open http://localhost:5000 in your browser
-   - Admin dashboard: http://localhost:5000/admin.html
-   - User dashboard: http://localhost:5000/dashboard.html
 
-## Default Admin Credentials
+Create a `.env` file and configure the required environment variables.
 
-After running the seed script, you can log in as admin with:
-- Email: `admin@bettycar.com` (or the email you set in `.env`)
-- Password: `Admin@123456` (or the password you set in `.env`)
+Run the database seed
 
-## API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user (protected)
-- `PUT /api/auth/profile` - Update profile (protected)
-
-### Cars
-- `GET /api/cars` - Get all cars with filters
-- `GET /api/cars/featured` - Get featured cars
-- `GET /api/cars/types` - Get car types
-- `GET /api/cars/:id` - Get car by ID
-
-### Bookings
-- `POST /api/bookings` - Create booking (protected)
-- `GET /api/bookings` - Get my bookings (protected)
-- `GET /api/bookings/:id` - Get booking by ID (protected)
-- `PUT /api/bookings/:id/cancel` - Cancel booking (protected)
-
-### Reviews
-- `POST /api/reviews` - Create review (protected)
-- `GET /api/reviews/car/:carId` - Get car reviews
-
-### Favorites
-- `POST /api/favorites` - Add to favorites (protected)
-- `GET /api/favorites` - Get my favorites (protected)
-- `DELETE /api/favorites/:carId` - Remove from favorites (protected)
-
-### Contact
-- `POST /api/contact` - Submit contact form
-
-### Admin (protected + admin role)
-- `GET /api/admin/stats` - Get dashboard statistics
-- `GET /api/admin/bookings` - Get all bookings
-- `PUT /api/admin/bookings/:id/status` - Update booking status
-- `POST /api/admin/cars` - Create car
-- `PUT /api/admin/cars/:id` - Update car
-- `DELETE /api/admin/cars/:id` - Delete car
-- `GET /api/admin/reviews` - Get all reviews
-- `DELETE /api/admin/reviews/:id` - Delete review
-- `GET /api/admin/contacts` - Get contact messages
-
-## Database Models
-
-### User
-- name (String, required)
-- email (String, required, unique)
-- password (String, required, hashed)
-- phone (String)
-- role (String: 'user' | 'admin', default: 'user')
-- avatar (String)
-- timestamps
-
-### Car
-- name (String, required)
-- brand (String, required)
-- type (String, required, enum)
-- description (String, required)
-- pricePerDay (Number, required)
-- image (String, required)
-- images (Array of String)
-- seats (Number, default: 5)
-- transmission (String: 'Automatic' | 'Manual')
-- fuelType (String: 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid')
-- features (Array of String)
-- available (Boolean, default: true)
-- location (String)
-- rating (Number, default: 0)
-- reviewCount (Number, default: 0)
-- featured (Boolean, default: false)
-- timestamps
-
-### Booking
-- user (ObjectId, ref: User, required)
-- car (ObjectId, ref: Car, required)
-- pickupDate (Date, required)
-- returnDate (Date, required)
-- pickupLocation (String, required)
-- totalDays (Number, required)
-- pricePerDay (Number, required)
-- totalPrice (Number, required)
-- status (String: 'pending' | 'confirmed' | 'active' | 'completed' | 'cancelled')
-- notes (String)
-- timestamps
-
-### Review
-- user (ObjectId, ref: User, required)
-- car (ObjectId, ref: Car, required)
-- rating (Number, required, min: 1, max: 5)
-- comment (String, required, maxlength: 1000)
-- timestamps
-
-### Favorite
-- user (ObjectId, ref: User, required)
-- car (ObjectId, ref: Car, required)
-- timestamps
-
-### Contact
-- name (String, required)
-- email (String, required)
-- message (String, required)
-- timestamps
-
-## Development
-
-### Running in development mode
-```bash
-npm run dev
-```
-This uses `--watch` flag for auto-restart on file changes.
-
-### Seeding the database
-```bash
+bash
 npm run seed
-```
 
-### Adding new cars
-Use the admin dashboard at `/admin.html` to add, edit, or delete cars.
 
-## Deployment
+Start the application
 
-### Environment Variables for Production
-- Set `NODE_ENV=production`
-- Use a strong `JWT_SECRET`
-- Use a secure MongoDB connection string
-- Update admin credentials
+bash
+npm run dev
 
-### Recommended Deployment Platforms
-- Backend: Render, Railway, Heroku, or VPS
-- Database: MongoDB Atlas (already configured)
-- Frontend: Can be served from the same backend or deployed separately to Vercel/Netlify
 
-## Security Considerations
+The application will be available at
 
-- Passwords are hashed using bcryptjs
-- JWT tokens for authentication
-- Protected routes require valid tokens
-- Admin routes require admin role
-- Input validation on endpoints
-- CORS configured for cross-origin requests
+text
+http://localhost:5000
 
-## Future Enhancements
 
-- Email notifications for bookings
-- Password reset functionality
-- File upload for car images
-- Payment integration
-- Rate limiting
-- Refresh token mechanism
-- Advanced search with autocomplete
-- Booking calendar view
-- Mobile app
+---
+
+## Admin Account
+
+The administrator account is created by running the seed script.
+
+The administrator credentials are configured using the environment variables in the `.env` file.
+
+---
+
+## Main Pages
+
+* Home Page
+* Car Listing
+* Car Details
+* Login
+* Register
+* User Dashboard
+* Admin Dashboard
+* Contact Page
+* About Page
+
+---
+
+## Project Workflow
+
+1. Users register or log in.
+2. Users browse available cars.
+3. Users select a rental period.
+4. A booking request is created.
+5. The administrator reviews the booking.
+6. The administrator confirms or updates the booking status.
+7. Customers can view the updated booking information from their dashboard.
+
+---
+
+## Future Improvements
+
+Some features I plan to add in the future include:
+
+* Online payment integration
+* Email notifications
+* Image upload for cars
+* Password reset
+* Booking calendar
+* Reports and analytics
+* Better search and filtering
+* Mobile application
+
+---
+
+## Author
+
+**Bethelhem**
+
+Software Engineering Student
+
+---
 
 ## License
 
-This project is proprietary to Betty Car.
-
-## Support
-
-For questions or issues, contact:
-- Email: info@bettycar.com
-- Phone: +251 900 000 000
-- Location: Bishoftu, Ethiopia
+This project was developed for learning and portfolio purposes.
