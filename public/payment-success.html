@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Successful - Betty Car Rental</title>
+  <meta name="description" content="Your payment was successful. Your booking is now confirmed.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Payment Successful!</h1>
+      <p>Your booking has been confirmed</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h2>Thank You for Your Payment</h2>
+        <p class="success-message">Your payment has been processed successfully and your booking is now confirmed.</p>
+        
+        <div class="payment-details-card" id="payment-details">
+          <div class="loading-spinner">Loading payment details...</div>
+        </div>
+
+        <div class="success-actions">
+          <a href="/dashboard.html" class="btn btn-primary">View My Bookings</a>
+          <a href="/index.html" class="btn btn-outline">Return Home</a>
+        </div>
+
+        <div class="email-confirmation">
+          <p>📧 A confirmation email has been sent to your email address with all the booking details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/footer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bookingId = urlParams.get('bookingId');
+      
+      if (bookingId) {
+        try {
+          const data = await api.get(`/payment/booking/${bookingId}/details`);
+          const payment = data.payment;
+          
+          document.getElementById('payment-details').innerHTML = `
+            <div class="detail-row">
+              <span class="detail-label">Payment Reference:</span>
+              <span class="detail-value">${payment.paymentReference}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Amount Paid:</span>
+              <span class="detail-value">${UI.formatPrice(payment.amount)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Payment Method:</span>
+              <span class="detail-value">${payment.paymentMethod}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Transaction Date:</span>
+              <span class="detail-value">${UI.formatDate(payment.transactionDate)}</span>
+            </div>
+          `;
+        } catch (error) {
+          document.getElementById('payment-details').innerHTML = `
+            <p class="error-message">Unable to load payment details.</p>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Payment - Betty Car Rental</title>
+  <meta name="description" content="Complete your car rental booking payment securely with Betty Car Rental.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Complete Your Payment</h1>
+      <p>Secure your booking by completing the payment below</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="payment-container">
+        <!-- Booking Summary -->
+        <div class="payment-summary">
+          <h2>Booking Summary</h2>
+          <div id="booking-details" class="booking-details">
+            <div class="loading-spinner">Loading booking details...</div>
+          </div>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="payment-form-wrapper">
+          <h2>Payment Details</h2>
+          <form id="payment-form">
+            <div class="form-group">
+              <label for="payment-method">Payment Method</label>
+              <select id="payment-method" name="paymentMethod" class="form-control" required>
+                <option value="">Select Payment Method</option>
+                <option value="stripe">Credit/Debit Card (Stripe)</option>
+                <option value="chapa">Mobile Money (Chapa)</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="cash">Pay at Pickup</option>
+              </select>
+            </div>
+
+            <div class="payment-method-info" id="payment-method-info" style="display: none;">
+              <p id="payment-info-text"></p>
+            </div>
+
+            <div class="payment-terms">
+              <label class="checkbox-label">
+                <input type="checkbox" id="terms" required>
+                <span>I agree to the <a href="/terms.html" target="_blank">Terms and Conditions</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a></span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="pay-button">
+              <span class="btn-text">Complete Payment</span>
+              <span class="btn-loader" style="display: none;">Processing...</span>
+            </button>
+          </form>
+
+          <div class="payment-security">
+            <div class="security-icons">
+              <span>🔒 Secure Payment</span>
+              <span>🛡️ SSL Encrypted</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/footer.js"></script>
+  <script src="/js/payment.js"></script>
+</body>
+</html>

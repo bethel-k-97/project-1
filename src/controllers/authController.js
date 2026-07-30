@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const User = require('../models/User');
 const { validationResult } = require('express-validator');
+const EmailService = require('../services/emailService');
 
 const generateToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -33,6 +34,17 @@ exports.register = async (req, res, next) => {
 
     const user = await User.create({ name, email, password, phone });
     const token = generateToken(user._id);
+
+    console.log("Name:", name);
+console.log("Email:", email);
+
+EmailService.sendWelcomeEmail(name, email).catch((err) => {
+  console.error("Failed to send welcome email:", err);
+});
+    // Send welcome email (async, don't wait for it)
+    EmailService.sendWelcomeEmail(name, email).catch((err) => {
+      console.error('Failed to send welcome email:', err);
+    });
 
     res.status(201).json({
       success: true,
@@ -113,13 +125,14 @@ exports.forgotPassword = async (req, res, next) => {
     const resetToken = user.getResetPasswordToken();
     await user.save({ validateBeforeSave: false });
 
-    // In production, send email with reset token
-    // For now, return the token in response (for testing)
+    const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:5000'}/reset-password.html?token=${resetToken}`;
+
+    // Send password reset email
+    await EmailService.sendPasswordReset(user.name, email, resetUrl);
+
     res.json({
       success: true,
-      message: 'Password reset token generated.',
-      resetToken, // Remove this in production
-      resetUrl: `${process.env.CLIENT_URL || 'http://localhost:5000'}/reset-password.html?token=${resetToken}`,
+      message: 'Password reset email sent. Please check your inbox.',
     });
   } catch (error) {
     next(error);

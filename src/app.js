@@ -8,6 +8,7 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const favoriteRoutes = require('./routes/favoriteRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 const errorHandler = require('./middleware/errorHandler');
 const { generalLimiter, authLimiter, passwordResetLimiter } = require('./middleware/rateLimiter');
 
@@ -30,6 +31,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/favorites', favoriteRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/payment', paymentRoutes);
 
 app.use(express.static(path.join(__dirname, '../public')));
 

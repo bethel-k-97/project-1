@@ -1,6 +1,7 @@
 const Booking = require('../models/Booking');
 const Car = require('../models/Car');
 const { validationResult } = require('express-validator');
+const EmailService = require('../services/emailService');
 
 const calculateDays = (pickup, returnDate) => {
   const start = new Date(pickup);
@@ -53,14 +54,31 @@ exports.createBooking = async (req, res, next) => {
       pricePerDay: car.pricePerDay,
       totalPrice,
       notes: notes || '',
-      status: 'confirmed',
+      status: 'pending', // Changed to pending until payment is completed
     });
 
     await booking.populate('car', 'name brand type image pricePerDay');
 
+    // Send booking confirmation email (async, don't wait for it)
+    EmailService.sendBookingConfirmation(
+      req.user.name,
+      req.user.email,
+      {
+        carName: car.name,
+        pickupDate: new Date(pickupDate).toLocaleDateString(),
+        returnDate: new Date(returnDate).toLocaleDateString(),
+        pickupLocation,
+        totalDays,
+        totalPrice: `${totalPrice} ETB`,
+        bookingId: booking._id,
+      }
+    ).catch((err) => {
+      console.error('Failed to send booking confirmation email:', err);
+    });
+
     res.status(201).json({
       success: true,
-      message: 'Booking confirmed successfully.',
+      message: 'Booking created successfully. Please complete payment to confirm.',
       booking,
     });
   } catch (error) {
@@ -110,7 +128,7 @@ exports.cancelBooking = async (req, res, next) => {
       return res.status(400).json({ success: false, message: errors.array()[0].msg });
     }
 
-    const booking = await Booking.findById(req.params.id);
+    const booking = await Booking.findById(req.params.id).populate('car');
 
     if (!booking) {
       return res.status(404).json({ success: false, message: 'Booking not found.' });
@@ -126,6 +144,18 @@ exports.cancelBooking = async (req, res, next) => {
 
     booking.status = 'cancelled';
     await booking.save();
+
+    // Send cancellation email (async, don't wait for it)
+    EmailService.sendBookingCancellation(
+      req.user.name,
+      req.user.email,
+      {
+        carName: booking.car.name,
+        bookingId: booking._id,
+      }
+    ).catch((err) => {
+      console.error('Failed to send cancellation email:', err);
+    });
 
     res.json({ success: true, message: 'Booking cancelled.', booking });
   } catch (error) {

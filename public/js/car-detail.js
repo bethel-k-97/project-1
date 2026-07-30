@@ -124,7 +124,8 @@ async function handleBooking(e) {
       pickupLocation,
     });
     UI.toast(data.message, 'success');
-    setTimeout(() => { window.location.href = '/dashboard.html'; }, 1500);
+    // Redirect to payment page instead of dashboard
+    setTimeout(() => { window.location.href = `/booking-confirmation.html?bookingId=${data.booking._id}`; }, 1500);
   } catch (error) {
     UI.toast(error.message, 'error');
   } finally {

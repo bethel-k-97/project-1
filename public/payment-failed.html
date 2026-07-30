@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Failed - Betty Car Rental</title>
+  <meta name="description" content="Payment processing failed. Please try again or contact support.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Payment Failed</h1>
+      <p>We were unable to process your payment</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="error-container">
+        <div class="error-icon">✕</div>
+        <h2>Payment Processing Failed</h2>
+        <p class="error-message">We apologize, but we were unable to process your payment. This could be due to a temporary issue with the payment gateway or invalid payment details.</p>
+        
+        <div class="error-reasons">
+          <h3>Common Reasons:</h3>
+          <ul>
+            <li>Insufficient funds</li>
+            <li>Invalid card details</li>
+            <li>Bank declined the transaction</li>
+            <li>Network connectivity issues</li>
+          </ul>
+        </div>
+
+        <div class="error-actions">
+          <a href="/payment.html?bookingId=<%= bookingId %>" class="btn btn-primary">Try Again</a>
+          <a href="/dashboard.html" class="btn btn-outline">View My Bookings</a>
+          <a href="/contact.html" class="btn btn-secondary">Contact Support</a>
+        </div>
+
+        <div class="error-help">
+          <p>If the problem persists, please contact our support team at <a href="mailto:support@bettycar.com">support@bettycar.com</a> or call us at +251 911 XXX XXX.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/footer.js"></script>
+</body>
+</html>

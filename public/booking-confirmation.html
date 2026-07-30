@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed - Betty Car Rental</title>
+  <meta name="description" content="Your car rental booking has been confirmed. Complete your payment to secure your reservation.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Booking Confirmed!</h1>
+      <p>Please complete your payment to secure your reservation</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="confirmation-container">
+        <div class="confirmation-icon">✓</div>
+        <h2>Your Booking Has Been Created</h2>
+        <p class="confirmation-message">Your booking request has been received. Please complete the payment below to confirm your reservation.</p>
+        
+        <div class="booking-details-card" id="booking-details">
+          <div class="loading-spinner">Loading booking details...</div>
+        </div>
+
+        <div class="confirmation-actions">
+          <a href="/payment.html?bookingId=<%= bookingId %>" class="btn btn-primary btn-lg">Complete Payment</a>
+          <a href="/dashboard.html" class="btn btn-outline">View My Bookings</a>
+        </div>
+
+        <div class="booking-progress">
+          <div class="progress-step completed">
+            <span class="step-number">1</span>
+            <span class="step-label">Booking Created</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step active">
+            <span class="step-number">2</span>
+            <span class="step-label">Payment Pending</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step">
+            <span class="step-number">3</span>
+            <span class="step-label">Booking Confirmed</span>
+          </div>
+        </div>
+
+        <div class="email-confirmation">
+          <p>📧 A confirmation email has been sent to your email address with booking details and payment instructions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer"></footer>
+
+  <script src="/js/ui.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/footer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bookingId = urlParams.get('bookingId');
+      
+      if (bookingId) {
+        try {
+          const data = await api.get(`/payment/booking/${bookingId}`);
+          const booking = data.booking;
+          
+          document.getElementById('booking-details').innerHTML = `
+            <div class="detail-row">
+              <span class="detail-label">Booking ID:</span>
+              <span class="detail-value">${booking._id}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Car:</span>
+              <span class="detail-value">${booking.car.name} (${booking.car.brand})</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Pickup Date:</span>
+              <span class="detail-value">${UI.formatDate(booking.pickupDate)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Return Date:</span>
+              <span class="detail-value">${UI.formatDate(booking.returnDate)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Pickup Location:</span>
+              <span class="detail-value">${booking.pickupLocation}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Total Days:</span>
+              <span class="detail-value">${booking.totalDays}</span>
+            </div>
+            <div class="detail-row total">
+              <span class="detail-label">Total Amount:</span>
+              <span class="detail-value">${UI.formatPrice(booking.totalPrice)}</span>
+            </div>
+          `;
+        } catch (error) {
+          document.getElementById('booking-details').innerHTML = `
+            <p class="error-message">Unable to load booking details.</p>
+          `;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
